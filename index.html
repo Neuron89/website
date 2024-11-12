@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hayden Nester - Personal Website</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <a href="#" class="nav-logo">HN</a>
+        <ul>
+          <li class="nav-item">
+            <a href="projects.html" class="nav-link">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a href="services.html" class="nav-link">Services</a>
+          </li>
+          <li class="nav-item">
+            <a href="file-sharing.html" class="nav-link">File Sharing</a>
+          </li>
+        </ul>
+        <div class="nav-right">
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="file-sharing.html" class="upload-btn">Upload Files</a>
+        </div>
+      </div>
+    </nav>
+
+    <header>
+      <h1>Hayden Nester</h1>
+      <p>Software Developer & Digital Creator</p>
+    </header>
+
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>Welcome to My Digital Space</h1>
+        <p>Creating innovative solutions through code and creativity</p>
+        <img
+          src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80"
+          alt="Modern Server Room"
+          class="hero-image"
+        />
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <h2>About Me</h2>
+      <p>
+        I'm a passionate software developer with expertise in web development
+        and system architecture. I love creating efficient and elegant solutions
+        to complex problems.
+      </p>
+
+      <div class="skills">
+        <div class="skill-card">
+          <img
+            src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80"
+            alt="Frontend Development"
+          />
+          <h3>Frontend Development</h3>
+          <p>HTML, CSS, JavaScript, React</p>
+        </div>
+        <div class="skill-card">
+          <img
+            src="https://images.unsplash.com/photo-1562813733-b31f71025d54?w=800&q=80"
+            alt="Backend Development"
+          />
+          <h3>Backend Development</h3>
+          <p>Node.js, Python, SQL</p>
+        </div>
+        <div class="skill-card">
+          <img
+            src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80"
+            alt="DevOps"
+          />
+          <h3>DevOps</h3>
+          <p>Docker, AWS, CI/CD</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="file-sharing" id="files">
+      <h2>File Sharing</h2>
+      <p>Share and manage your files securely</p>
+
+      <div class="file-upload">
+        <h3>Upload Files</h3>
+        <p>Maximum file size: 50MB</p>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+          <input type="file" id="fileInput" name="file" multiple />
+          <button type="submit" class="upload-btn">Upload Files</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Get in Touch</h2>
+      <p>Feel free to reach out for collaborations or questions</p>
+      <p>Email: hsnester.jobs@gmail.com</p>
+      <p>LinkedIn: linkedin.com/in/johndoe</p>
+      <p>GitHub: github.com/johndoe</p>
+    </section>
+
+    <footer>
+      <p>&copy; 2023 Hayden Nester. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

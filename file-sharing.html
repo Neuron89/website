@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Sharing - Hayden Nester</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">HN</a>
+        <ul>
+          <li class="nav-item">
+            <a href="projects.html" class="nav-link">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a href="services.html" class="nav-link">Services</a>
+          </li>
+          <li class="nav-item">
+            <a href="file-sharing.html" class="nav-link active">File Sharing</a>
+          </li>
+        </ul>
+        <div class="nav-right">
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="file-sharing.html" class="upload-btn">Upload Files</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>File Sharing</h1>
+        <p>Secure and easy file sharing solution</p>
+    </header>
+
+    <section class="file-sharing-section">
+        <div class="upload-area">
+            <h2>Upload Files</h2>
+            <div class="drag-drop-zone" id="dropZone">
+                <img src="upload-icon.svg" alt="Upload">
+                <p>Drag and drop files here or click to select</p>
+                <input type="file" id="fileInput" multiple hidden>
+            </div>
+            <div class="upload-limits">
+                <p>Maximum file size: 50MB</p>
+                <p>Supported formats: All file types</p>
+            </div>
+            <button class="upload-btn" onclick="startUpload()">Upload Files</button>
+        </div>
+
+        <div class="recent-files">
+            <h2>Recent Files</h2>
+            <div class="files-list">
+                <!-- Files will be listed here -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Hayden Nester. All rights reserved.</p>
+    </footer>
+
+    <script src="file-sharing.js"></script>
+</body>
+</html>

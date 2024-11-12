@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Hayden Nester</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">HN</a>
+        <ul>
+          <li class="nav-item">
+            <a href="projects.html" class="nav-link">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a href="services.html" class="nav-link">Services</a>
+          </li>
+          <li class="nav-item">
+            <a href="file-sharing.html" class="nav-link">File Sharing</a>
+          </li>
+        </ul>
+        <div class="nav-right">
+          <a href="contact.html" class="nav-link active">Contact</a>
+          <a href="file-sharing.html" class="upload-btn">Upload Files</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="page-header">
+        <h1>Contact Me</h1>
+        <p>Let's discuss your next project</p>
+    </header>
+
+    <section class="contact-section">
+        <div class="contact-info">
+            <div class="contact-card">
+                <img src="email-icon.svg" alt="Email">
+                <h3>Email</h3>
+                <p>hsnester.jobs@gmail.com</p>
+            </div>
+            <div class="contact-card">
+                <img src="linkedin-icon.svg" alt="LinkedIn">
+                <h3>LinkedIn</h3>
+                <p>linkedin.com/in/johndoe</p>
+            </div>
+            <div class="contact-card">
+                <img src="github-icon.svg" alt="GitHub">
+                <h3>GitHub</h3>
+                <p>github.com/johndoe</p>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <h2>Send a Message</h2>
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Hayden Nester. All rights reserved.</p>
+    </footer>
+
+    <script src="contact.js"></script>
+</body>
+</html>
