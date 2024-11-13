@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Blog Post - Hayden Nester</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Add Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">HN</a>
+        <ul>
+          <li class="nav-item">
+            <a href="projects.html" class="nav-link">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a href="blog.html" class="nav-link">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="file-sharing.html" class="nav-link">File Sharing</a>
+          </li>
+        </ul>
+        <div class="nav-right">
+          <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="page-header">
+      <h1>Create New Blog Post</h1>
+      <p>Share your thoughts with the world</p>
+    </header>
+
+    <section class="create-post-section">
+      <form id="blogPostForm" class="post-form">
+        <div class="form-group">
+          <label for="postTitle">Title:</label>
+          <input type="text" id="postTitle" required />
+        </div>
+        <div class="form-group">
+          <label for="postContent">Content:</label>
+          <textarea
+            id="postContent"
+            rows="10"
+            class="markdown-editor"
+            placeholder="Write your post content here using Markdown..."
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="markdownFile">Or Upload Markdown File:</label>
+          <input type="file" id="markdownFile" accept=".md,.txt" />
+        </div>
+        <div class="form-group">
+          <label for="postPreview">Preview:</label>
+          <div id="postPreview" class="preview-area"></div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="cta-button">Publish Post</button>
+          <a href="blog.html" class="cancel-button">Cancel</a>
+        </div>
+      </form>
+    </section>
+
+    <footer>
+      <p>&copy; 2023 Hayden Nester. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const markdownFile = document.getElementById("markdownFile");
+      const postPreview = document.getElementById("postPreview");
+      const postContent = document.getElementById("postContent");
+
+      // Markdown file handling
+      markdownFile.addEventListener("change", function (e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const markdown = e.target.result;
+            postContent.value = markdown;
+            postPreview.innerHTML = marked.parse(markdown);
+          };
+          reader.readAsText(file);
+        }
+      });
+
+      // Live markdown preview
+      postContent.addEventListener("input", function () {
+        postPreview.innerHTML = marked.parse(this.value);
+      });
+
+      // Form submission
+      document
+        .getElementById("blogPostForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+
+          const formData = new FormData();
+          formData.append("title", document.getElementById("postTitle").value);
+          formData.append("content", postContent.value);
+
+          try {
+            const response = await fetch(
+              "http://localhost:5000/api/blog/post",
+              {
+                method: "POST",
+                body: formData,
+              },
+            );
+
+            const result = await response.json();
+            if (result.success) {
+              alert("Post published successfully!");
+              window.location.href = "blog.html"; // Redirect to blog page
+            } else {
+              alert("Error publishing post: " + result.message);
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            alert("Error publishing post");
+          }
+        });
+    </script>
+  </body>
+</html>

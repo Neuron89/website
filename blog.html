@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - Hayden Nester</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Add Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">HN</a>
+        <ul>
+          <li class="nav-item">
+            <a href="projects.html" class="nav-link">Projects</a>
+          </li>
+          <li class="nav-item">
+            <a href="blog.html" class="nav-link active">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a href="file-sharing.html" class="nav-link">File Sharing</a>
+          </li>
+        </ul>
+        <div class="nav-right">
+          <a href="contact.html" class="nav-link">Contact</a>
+          <a href="create-post.html" class="upload-btn">New Post</a>
+        </div>
+      </div>
+    </nav>
+
+    <header class="page-header">
+      <h1>Blog</h1>
+      <p>Thoughts, tutorials, and tech insights</p>
+    </header>
+
+    <section class="blog-posts" id="blogPosts">
+      <!-- Blog posts will be loaded dynamically -->
+    </section>
+
+    <footer>
+      <p>&copy; 2023 Hayden Nester. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Load existing posts
+      async function loadPosts() {
+        try {
+          console.log("Fetching posts...");
+          const response = await fetch("http://localhost:5000/api/blog/posts");
+          console.log("Raw response:", response);
+
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+
+          const responseText = await response.text();
+          console.log("Response text:", responseText);
+
+          let data;
+          try {
+            data = JSON.parse(responseText);
+          } catch (e) {
+            console.error("Error parsing JSON:", e);
+            throw new Error("Invalid JSON response from server");
+          }
+
+          console.log("Parsed data:", data);
+
+          // Extract posts array from the response
+          const posts = data.posts;
+
+          if (!posts) {
+            throw new Error("No posts data received");
+          }
+
+          const blogPostsContainer = document.getElementById("blogPosts");
+          if (!blogPostsContainer) {
+            console.error("Could not find blogPosts container!");
+            return;
+          }
+
+          if (!Array.isArray(posts) || posts.length === 0) {
+            blogPostsContainer.innerHTML = "<p>No posts available.</p>";
+            console.log("Rendering posts:", posts);
+            blogPostsContainer.innerHTML = posts;
+          }
+
+          blogPostsContainer.innerHTML = posts
+            .map(
+              (post) => `
+            <article class="blog-post">
+              <h2>${post.title}</h2>
+              <div class="post-meta">
+                <span class="date">${post.date}</span>
+                <span class="author">by Hayden Nester</span>
+              </div>
+              <div class="post-content">
+                ${marked.parse(post.content)}
+              </div>
+            </article>
+          `,
+            )
+            .join("");
+        } catch (error) {
+          console.error("Error loading posts:", error);
+          const blogPostsContainer = document.getElementById("blogPosts");
+          if (blogPostsContainer) {
+            blogPostsContainer.innerHTML =
+              "<p>Error loading posts. Please try again later.</p>";
+          }
+        }
+      }
+
+      // Load posts when page loads
+      document.addEventListener("DOMContentLoaded", loadPosts);
+    </script>
+  </body>
+</html>
